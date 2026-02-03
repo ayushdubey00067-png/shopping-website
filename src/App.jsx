@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion'; // Step 3 Fix: Import motion
+import { motion, AnimatePresence } from 'framer-motion'; 
 import { CartProvider } from './context/CartContext';
 
 // Components Imports
@@ -13,9 +13,11 @@ import Checkout from './components/Checkout';
 function App() {
   return (
     <CartProvider>
-      <Router>
+      {/* Step 1: Added basename. 
+        This tells React Router that the app lives at /shopping-website/ 
+      */}
+      <Router basename="/shopping-website">
         <div className="min-h-screen bg-white text-gray-900 selection:bg-indigo-100">
-          {/* Navbar har page par dikhega */}
           <Navbar />
 
           <main>
@@ -33,23 +35,21 @@ function App() {
                     >
                       <PortfolioHero />
                       <div className="container mx-auto px-4">
-                        <h2 className="text-3xl font-bold text-center mt-12 mb-8">Featured Products</h2>
+                        <h2 className="text-3xl font-bold text-center mt-12 mb-8">
+                          Featured Products
+                        </h2>
                         <ProductList />
                       </div>
                     </motion.div>
                   } 
                 />
 
-                {/* Cart Page Route */}
                 <Route path="/cart" element={<Cart />} />
-
-                {/* Checkout Page Route */}
                 <Route path="/checkout" element={<Checkout />} />
               </Routes>
             </AnimatePresence>
           </main>
 
-          {/* Optional: Footer yahan add kar sakte hain */}
           <footer className="py-10 text-center text-gray-400 text-sm border-t mt-20">
             © 2026 Modern Shop Portfolio Project
           </footer>
