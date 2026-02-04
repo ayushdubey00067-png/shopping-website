@@ -1,8 +1,7 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from "react-router-dom";
 import { motion, AnimatePresence } from 'framer-motion'; 
 import { CartProvider } from './context/CartContext';
-import { BrowserRouter } from "react-router-dom";
 
 // Components Imports
 import Navbar from './components/Navbar';
@@ -14,18 +13,15 @@ import Checkout from './components/Checkout';
 function App() {
   return (
     <CartProvider>
-      {/* Step 1: Added basename. 
-        This tells React Router that the app lives at /shopping-website/ 
-      */}
-    <BrowserRouter basename="/shopping-website/">
-
+      <HashRouter>
         <div className="min-h-screen bg-white text-gray-900 selection:bg-indigo-100">
           <Navbar />
 
           <main>
             <AnimatePresence mode="wait">
               <Routes>
-                {/* Home Page Route */}
+
+                {/* Home Page */}
                 <Route 
                   path="/" 
                   element={
@@ -48,6 +44,7 @@ function App() {
 
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/checkout" element={<Checkout />} />
+
               </Routes>
             </AnimatePresence>
           </main>
@@ -56,7 +53,7 @@ function App() {
             © 2026 Modern Shop Portfolio Project
           </footer>
         </div>
-     </BrowserRouter>
+      </HashRouter>
     </CartProvider>
   );
 }
